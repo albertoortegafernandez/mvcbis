@@ -8,18 +8,18 @@ class UserController
 {
     public function __construct()
     {
-        echo "en UserController<br>";
+       //echo "en UserController<br>";
     }
 
     public function index()
     {
-        echo "En método index<br>";
+        //echo "En método index<br>";
 
         //buscar la lista de usuarios
         //$users=\App\Models\User::all();
         $users=User::all();//arriba pongo use..
-        echo'<pre>';
-        print_r($users);
+        //echo'<pre>';
+        //print_r($users); muestra el array de usuarios
         //generar vista
         include('../views/user/index.php');
     }
@@ -27,7 +27,10 @@ class UserController
     public function show($arguments)
     {
         $id = $arguments[0];
-        echo "Mostrar el usuario $id";        
+        echo "Mostrar el usuario $id"; 
+        $user= User::find($id);  
+        //generar vista
+        include('../views/user/show.php');     
     }
     
     public function delete($arguments)
