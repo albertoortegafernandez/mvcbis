@@ -7,7 +7,7 @@
         <title>MVC</title>
     </head>
   <body>
-<h1>Lista de Usuarios</h1>
+<h1>Lista de Productos</h1>
 
     <table>
         <thead>
@@ -17,10 +17,11 @@
             </tr>
         </thead>
         <tbody>
-               <?php foreach ($products as $product) {?>
+               <?php foreach ($producTypes as $product) {?>
                 <tr>
                     <td><?= $product->id ?></td>
                     <td><?= $product->name ?></td>
+                    <td><a href="/producttype/show/<?=$product->id?>"> Ver</a></td>
                 </tr> 
                <?php } ?>
         </tbody>
