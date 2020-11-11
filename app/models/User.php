@@ -8,17 +8,18 @@ class User
 {
     public function __construct()
     {
-        
+        # code...
     }
 
     public static function all()
     {
-        $db=User::db();
+        $db = User::db();
         $statement = $db->query('SELECT * FROM users');
         $users = $statement->fetchAll(PDO::FETCH_CLASS, User::class);
-        
-        return $users;
+
+        return $users;        
     }
+
     public static function find($id)
     {
         $db = User::db();
