@@ -1,11 +1,14 @@
 <?php
 namespace App\Models;
 
+require_once '../core/Model.php';
+
 use PDO;
 use PDOException;
+use Core\Model;
 
-class User
-{
+class User extends Model{
+
     public function __construct()
     {
         # code...
@@ -30,18 +33,19 @@ class User
         $user = $statement->fetch(PDO::FETCH_CLASS);
         return $user;
     }
-
-    protected static function db()
+    public function insert()
     {
-        $dsn = 'mysql:dbname=mvc;host=db';
-        $usuario = 'root';
-        $contraseña = 'password';
-        try {
-            $db = new PDO($dsn, $usuario, $contraseña);
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo 'Falló la conexión: ' . $e->getMessage();
-        }
-        return $db;
+        $db = User::db();
+
+        $statement = $db->prepare('INSERT INTO users(`name`,
+        `surname`, `email`, `birthdate`) VALUES(:name, :surname, :email, :birthdate)');
+        $data=[
+            ':name' => $this->name,
+            ':surname' => $this->surname,
+            ':email' => $this->email,
+            ':birthdate' => $this->birthdate,
+        ];        
+        return $statement->execute($data);
     }
+
 }

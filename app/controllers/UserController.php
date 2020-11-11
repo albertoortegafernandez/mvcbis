@@ -32,10 +32,26 @@ class UserController
         //generar vista
         include('../views/user/show.php');     
     }
-    
     public function delete($arguments)
     {
         $id = $arguments[0];
         echo "Borrar el usuario $id";        
+    }
+    public function create(){
+        include('../views/user/create.php');
+        //echo"EN CREATE";
+    }
+    public function store()
+    {   
+        //crea objeto
+        $user=new User;
+        $user->name=$_POST['name'];
+        $user->surname=$_POST['surname'];
+        $user->email=$_POST['email'];
+        $user->birthdate=$_POST['birthdate'];
+        $user->insert();
+
+        //redirigir lista
+        header('Location: /user/index');
     }
 }

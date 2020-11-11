@@ -3,6 +3,7 @@
 <!-- Begin page content -->
 <main role="main" class="container">
   <h1>Lista de usuarios  </h1>
+  <a class="btn btn-primary float-right" href="/user/create">Nuevo</a>
   <table class="table table-striped">
         <thead>
             <tr>
