@@ -54,4 +54,26 @@ class UserController
         //redirigir lista
         header('Location: /user/index');
     }
+    public function edit ($arguments)
+    {
+        $id=$arguments[0];
+        //buscar datos
+        $user=USER::find($id);
+        //mostrar vista
+        include('../views/user/edit.php');
+    }
+    public function update($arguments)
+    {   
+        $id= $arguments[0];
+        //crea objeto
+        $user=User::find($id);
+        $user->name=$_POST['name'];
+        $user->surname=$_POST['surname'];
+        $user->email=$_POST['email'];
+        $user->birthdate=$_POST['birthdate'];
+        $user->save();
+
+        //redirigir lista
+        header('Location: /user/index');
+    }
 }
