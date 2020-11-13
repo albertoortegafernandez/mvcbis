@@ -35,7 +35,14 @@ class UserController
     public function delete($arguments)
     {
         $id = $arguments[0];
-        echo "Borrar el usuario $id";        
+        $user=User::find($id);
+        $user->delete();
+        //enfoque 2
+        User::destroy($id);
+
+        //siempre direccionar
+        header('Location: /user');
+        //echo "Borrar el usuario $id";        
     }
     public function create(){
         include('../views/user/create.php');

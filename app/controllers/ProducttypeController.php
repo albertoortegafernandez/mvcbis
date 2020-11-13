@@ -26,4 +26,37 @@ class ProducttypeController
         //generar vista
         include('../views/producttype/show.php');     
     }
+    public function create(){
+        include ('../views/producttype/create.php');
+    }
+    public function store(){
+        $product=new ProductType;
+        $product->id=$_POST['id'];
+        $product->name=$_POST['name'];
+        $product->insert();
+
+        header('Location: /producttype/index');
+    }
+    public function edit($arguments){
+        $id=$arguments[0];
+        $product=ProductType::find($id);
+        include('../views/producttype/edit.php');
+    }
+    public function update($arguments){
+        $id=$arguments[0];
+        $product=ProductType::find($id);
+        $product->id=$_POST['id'];
+        $product->name=$_POST['name'];
+        $product->save();
+
+        header('Location: /producttype/index');
+    }
+    public function delete($arguments){
+        $id=$arguments[0];
+        $product=ProductType::find($id);
+        $product->delete();
+
+        header('Location: /producttype');
+
+    }
 }
