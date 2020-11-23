@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-require_once('../app/models/User.php');
+//require_once('../app/models/User.php');
 use \App\Models\User;
 
 class UserController  

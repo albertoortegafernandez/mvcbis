@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-require_once('../app/models/ProductType.php');
+//require_once('../app/models/ProductType.php');
 use App\Models\ProductType;
 
 class ProducttypeController  

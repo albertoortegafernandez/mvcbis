@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-require_once '../core/Model.php';
+//require_once '../core/Model.php';
 
 use PDO;
 use PDOException;
@@ -74,5 +74,19 @@ class User extends Model{
         $db = User::db();
         $statement = $db->prepare('DELETE FROM users WHERE id=:id');        
         return $statement->execute([':id' => $id]);        
+    }
+    public function setPassword($password)
+    {
+        $password = password_hash($password, PASSWORD_BCRYPT);
+        $db = User::db();
+        $stmt = $db->prepare('UPDATE users SET password = :password WHERE id = :id');
+        $stmt->bindValue(':id', $this->id);
+        $stmt->bindValue(':password', $password);
+        $stmt->execute();
+        return $password;
+    }
+    public function passwordVerify($password)
+    {
+        return password_verify($password, $this->password);
     }
 }
