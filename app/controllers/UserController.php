@@ -9,6 +9,10 @@ class UserController
     public function __construct()
     {
        //echo "en UserController<br>";
+       if (!isset($_SESSION['user'])) {
+           header('Location: /login');
+           return;
+       }
     }
 
     public function index()

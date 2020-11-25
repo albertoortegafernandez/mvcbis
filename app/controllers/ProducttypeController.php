@@ -8,7 +8,10 @@ class ProducttypeController
 {
     public function __construct()
     {
-       
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            return;
+        }
     }
     public function index()
     {

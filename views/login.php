@@ -16,7 +16,15 @@
         <div class="form-group">
             <input class="form-control"  type="submit" value="Entrar">
         </div>
-    </form>   
+    </form>
+    <?php if(isset($_SESSION['error'])){ ?>
+        <div class="alert alert-danger">
+        <?= $_SESSION['error'] ?>
+        </div>   
+    <?php
+        unset($_SESSION['error']);
+    } ?>
+
 </main>
 
 <?php include('../views/parts/footer.php'); ?>

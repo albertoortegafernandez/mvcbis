@@ -99,4 +99,8 @@ class User extends Model{
     {
         return password_verify($password, $this->password);
     }
+    public function __toSTring()
+    {
+        return "$this->name $this->surname";
+    }
 }

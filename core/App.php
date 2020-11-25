@@ -5,8 +5,9 @@ class App
 {
     public function __construct()
     {
+        session_start();
         // echo "construyo App<br>";
-
+    
         if (isset($_GET['url'])) {
             $url = $_GET['url'];
         } else {
