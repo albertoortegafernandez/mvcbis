@@ -33,6 +33,16 @@ class User extends Model{
         $user = $statement->fetch(PDO::FETCH_CLASS);
         return $user;
     }
+    public static function findByEmail($email)
+    {
+        $db = User::db();
+
+        $statement = $db->prepare('SELECT * FROM users WHERE email=:email');
+        $statement->execute(array(':email' => $email));        
+        $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $user = $statement->fetch(PDO::FETCH_CLASS);
+        return $user;
+    }
     public function insert()
     {
         $db = User::db();
